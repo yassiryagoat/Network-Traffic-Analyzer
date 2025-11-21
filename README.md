@@ -1,6 +1,6 @@
 **Traffic Analyzer en Java avec Pcap4J** :
 
-# RAD.md – Rapport d’Analyse et de Design
+# READ.md – Rapport d’Analyse et de Design
 
 ## 📌 Titre du Projet
 
@@ -32,13 +32,34 @@ Le but de ce projet est de développer un outil en Java capable de capturer, ana
 ## 🏗️ Architecture du Projet
 
 com.alok.trafficanalyzer
-├── PacketCapture.java        # Capture en direct via Pcap4J
-├── PacketClassifier.java     # Classification, parsing & statistiques
-├── IPStatistics.java         # Statistiques par IP
-├── PortStatistics.java       # Statistiques par port
-├── AnalyzedPacket.java       # Modèle de paquet structuré
-├── PcapReader.java           # Lecture de fichiers .pcap
-├── TrafficAnalyzerApp.java   # Point d’entrée principal
+- **PacketCapture.java**  
+  Handles live packet capture from network interfaces using Pcap4J.  
+  Supports saving captured traffic into `.pcap` files for offline analysis.
+
+- **PacketClassifier.java**  
+  Parses packets, extracts metadata (IP, ports, protocols), and generates statistics.  
+  Provides classification logic for TCP, UDP, ICMP, etc.
+
+- **IPStatistics.java**  
+  Aggregates traffic by IP addresses.  
+  Useful for identifying top talkers, suspicious hosts, or bandwidth usage.
+
+- **PortStatistics.java**  
+  Tracks traffic distribution across ports.  
+  Helps detect active services, port scans, or anomalies.
+
+- **AnalyzedPacket.java**  
+  Defines a structured model for packets.  
+  Encapsulates source/destination IPs, ports, protocol, flags, and payload metadata.
+
+- **PcapReader.java**  
+  Reads and parses existing `.pcap` files.  
+  Enables offline traffic analysis and replay.
+
+- **TrafficAnalyzerApp.java**  
+  Main entry point of the application.  
+  Provides CLI/interactive menu to launch capture, classification, and reporting.
+
 
 ## ⚙️ Fonctionnalités Implémentées
 
